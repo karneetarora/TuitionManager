@@ -44,10 +44,48 @@ public class Instate extends Student {
 	  * @return string with name, last name, credit, funds, tuitionDue 
 	  */
 	 public String toString() {
-		return super.toString() + " " + funds + " " + tuitionDue();  
+		 boolean skip = false; 
+			String tuitionAmt = ""; 
+			if(Integer.toString(tuitionDue()).length() == 4) {
+				char tuition[] = new char[5];
+				for(int i = 0; i <5; i++) {
+					if(i == 1) {
+						tuition[i] = ',';
+						skip = true; 
+					}
+					else {
+						if(skip) 
+							tuition[i] = Integer.toString(tuitionDue()).charAt(i-1);
+						else
+							tuition[i] = Integer.toString(tuitionDue()).charAt(i);
+					}
+				}
+				for(int i = 0; i < 5; i++) {
+				  tuitionAmt = tuitionAmt + tuition[i];
+				}
+			}
+			else if(Integer.toString(tuitionDue()).length() == 5) {
+				char tuition[] = new char[6];
+				for(int i = 0; i <6; i++) {
+					if(i == 2) {
+						tuition[i] = ',';
+						skip = true; 
+					}
+					else {
+						if(skip) 
+							tuition[i] = Integer.toString(tuitionDue()).charAt(i-1);
+						else
+							tuition[i] = Integer.toString(tuitionDue()).charAt(i);
+					}
+				}
+				for(int i = 0; i < 6; i++) {
+					  tuitionAmt = tuitionAmt + tuition[i];
+				}
+			}	
+	
+		return super.toString() + "\n" + "-Aid Receieved: $" + funds + "\n" + "-Total Tuition Due: $" + tuitionAmt;  
 	}     
 	 
-	
 	/**
 	 * The following is a test bed for Instate Students
 	 * Each test invokes the toString() and tuitionDue() methods
@@ -57,27 +95,21 @@ public class Instate extends Student {
 		
 		Instate student1 = new Instate("Peter", "Parker", 8, 0);
 		System.out.println("Student 1 Entry: " + student1.toString()); 
-		System.out.println("Total Tuition Due: $" + student1.tuitionDue());
 		
 		Instate student = new Instate("Wilson", "Long", 8, 1000);
 		System.out.println("Student 2 Entry: " + student.toString()); 
-		System.out.println("Total Tuition Due: $" + student.tuitionDue());
 		
 		Instate student2 = new Instate("Peter", "Liang", 12, 0);
 		System.out.println("Student 3 Entry: " + student2.toString()); 
-		System.out.println("Total Tuition Due: $" + student2.tuitionDue());
 		
 		Instate student3 = new Instate("John", "Young", 12, 1000);
 		System.out.println("Student 4 Entry: " + student3.toString()); 
-		System.out.println("Total Tuition Due: $" + student3.tuitionDue());
 		
 		Instate student4 = new Instate("Michael", "Chamber", 17, 0);
 		System.out.println("Student 5 Entry: " + student4.toString()); 
-		System.out.println("Total Tuition Due: $" + student4.tuitionDue());
 		
 		Instate student5 = new Instate("John", "Smith", 17, 1000);
 		System.out.println("Student 6 Entry: " + student5.toString()); 
-		System.out.println("Total Tuition Due: $" + student5.tuitionDue());
 		
 
 	}
