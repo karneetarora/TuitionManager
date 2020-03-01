@@ -1,3 +1,9 @@
+/**
+ * TuitionManager Class - parses through the input and runs the correct method
+ * Methods include - add(), remove(), print()
+ @author Manel Bermad, Karneet Arora 
+ */
+
 import java.util.Scanner;
 
 public class TuitionManager {
@@ -17,11 +23,9 @@ public class TuitionManager {
 		
 	      while ( !done )
 	      {
-	    	 System.out.println("Enter your input:");// REMOVE LATER!!!
 	    	 stdin =  new Scanner(System.in);
 	    	 int lineSize = 0;
-	    	 String line = "";
-	    	 
+	    	 String line = "";	    	 
 	    	 
 	    	 while(stdin.hasNextLine()){
 	    		 line = stdin.nextLine();
@@ -52,7 +56,7 @@ public class TuitionManager {
 	            			 break;
 	            		 }
 	            		 
-	            		 if (credit < 9){
+	            		 if (credit < 1){
 	            			 System.out.println("Credit wrongly formatted.");
 	            			 break;
 	            		 }else{
@@ -107,7 +111,7 @@ public class TuitionManager {
 	            			 break;
 	            		 }
 	            		 
-	            		 if (credit < 1){
+	            		 if (credit < 9){
 	            			 System.out.println("Credit wrongly formatted(redit < 1).");
 	            			 break;
 	            		 }
@@ -139,6 +143,7 @@ public class TuitionManager {
 	            	 if(command.equals("R")){
 	            		 fname = w[1];
 	            		 lname = w[2];
+	            		 remove();
 	            	 }
 	            
 	             }else if(lineSize == 1){
@@ -166,20 +171,10 @@ public class TuitionManager {
 }
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	 /**
+
+	   /**
 	    * add() adds a student to the student List  if it is well formated and if it doesn't exist already.
-	    * */
-	   
+	    */
 	   private static void add()
 	   {	
 		   // create dummy Student since only fname and lname are compared.
@@ -206,11 +201,12 @@ public class TuitionManager {
 	    * remove() removes the specified student from student List if 
 	    * it is well formatted and if it exists in list.
 	    */
-	   private void remove(){
+	   private static void remove(){
 		   
 		   // create dummy Student since only fname and lname are compared.
-		   Student s = new Instate( fname,  lname, 0, 0); // no given credit; just fname and lname
+		   Student s = new Instate( fname,  lname, 0, 0); 
 		   if(!list.contains(s)){
+			   // issue!
 			   System.out.println("Student not in the list.");
 		   }else{
 			   list.remove(s);
