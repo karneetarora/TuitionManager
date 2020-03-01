@@ -8,7 +8,6 @@
 public class Outstate extends Student {
 	private boolean tristate; 
 	
-	
 	/**
 	 * Constructor for Outstate students 
 	 * @param fname, lname, credit, isTriState
@@ -17,7 +16,6 @@ public class Outstate extends Student {
 		super(fname, lname, credit);
 		this.tristate = isTriState; 
 	}
-	
 	
 	 /**
 	  * Computes the total Tuition Due by an OutState Student
@@ -49,15 +47,51 @@ public class Outstate extends Student {
 		return tuitionDue; 
 	}
 	
-	
 	 /**
 	  * toString() calls the superclass toString() method and adds it's own additional fields
 	  * @return string with name, last name, credit, tristate, tuitionDue 
 	  */
 	public String toString(){
-		return super.toString() + " " + tristate + " " + tuitionDue(); 
+		boolean skip = false; 
+		String tuitionAmt = ""; 
+		if(Integer.toString(tuitionDue()).length() == 4) {
+			char tuition[] = new char[5];
+			for(int i = 0; i <5; i++) {
+				if(i == 1) {
+					tuition[i] = ',';
+					skip = true; 
+				}
+				else {
+					if(skip) 
+						tuition[i] = Integer.toString(tuitionDue()).charAt(i-1);
+					else
+						tuition[i] = Integer.toString(tuitionDue()).charAt(i);
+				}
+			}
+			for(int i = 0; i < 5; i++) {
+			  tuitionAmt = tuitionAmt + tuition[i];
+			}
+		}
+		else if(Integer.toString(tuitionDue()).length() == 5) {
+			char tuition[] = new char[6];
+			for(int i = 0; i <6; i++) {
+				if(i == 2) {
+					tuition[i] = ',';
+					skip = true; 
+				}
+				else {
+					if(skip) 
+						tuition[i] = Integer.toString(tuitionDue()).charAt(i-1);
+					else
+						tuition[i] = Integer.toString(tuitionDue()).charAt(i);
+				}
+			}
+			for(int i = 0; i < 6; i++) {
+				  tuitionAmt = tuitionAmt + tuition[i];
+			}
+		}	
+		return super.toString() + "\n" + "-Tristate: " + tristate + "\n" + "-Total Tuition Due: $" + tuitionAmt; 
 	}
-	
 	
 	/**
 	 * The following is a test bed for Outstate Students
@@ -68,27 +102,21 @@ public class Outstate extends Student {
 		
 		Outstate student1 = new Outstate("Mary", "Anderson", 17, false);
 		System.out.println("Student 1 Entry: " + student1.toString()); 
-		System.out.println("Total Tuition Due: $" + student1.tuitionDue());
 		
 		Outstate student = new Outstate("Lauren", "Brown", 17, true);
 		System.out.println("Student 2 Entry: " + student.toString()); 
-		System.out.println("Total Tuition Due: $" + student.tuitionDue());
 		
 		Outstate student2 = new Outstate("Simons", "Michael", 8, false);
 		System.out.println("Student 3 Entry: " + student2.toString()); 
-		System.out.println("Total Tuition Due: $" + student2.tuitionDue());
 		
 		Outstate student3 = new Outstate("Stiller", "Anderson", 8, true);
 		System.out.println("Student 4 Entry: " + student3.toString()); 
-		System.out.println("Total Tuition Due: $" + student3.tuitionDue());
 		
 		Outstate student4 = new Outstate("Good", "Man", 12, false);
 		System.out.println("Student 5 Entry: " + student4.toString()); 
-		System.out.println("Total Tuition Due: $" + student4.tuitionDue());
 		
 		Outstate student5 = new Outstate("John", "White", 12, true);
 		System.out.println("Student 6 Entry: " + student5.toString()); 
-		System.out.println("Total Tuition Due: $" + student5.tuitionDue());
 	
 	}
 
