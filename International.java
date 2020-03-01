@@ -17,7 +17,6 @@ public class International extends Student {
 		exchange = isExchange; 
 	}
 	
-	
 	/**
 	  * This method computes the total tuition amount due for an International Student
 	  * The student pays $945/credit taken, regardless if the student is full time or part time 
@@ -59,7 +58,45 @@ public class International extends Student {
 	  * @return string with name, last name, credit, exchange, tuitionDue 
 	  */
 	 public String toString() {
-		 return super.toString() + " " + exchange + " " + tuitionDue();  
+		 boolean skip = false; 
+			String tuitionAmt = ""; 
+			if(Integer.toString(tuitionDue()).length() == 4) {
+				char tuition[] = new char[5];
+				for(int i = 0; i <5; i++) {
+					if(i == 1) {
+						tuition[i] = ',';
+						skip = true; 
+					}
+					else {
+						if(skip) 
+							tuition[i] = Integer.toString(tuitionDue()).charAt(i-1);
+						else
+							tuition[i] = Integer.toString(tuitionDue()).charAt(i);
+					}
+				}
+				for(int i = 0; i < 5; i++) {
+				  tuitionAmt = tuitionAmt + tuition[i];
+				}
+			}
+			else if(Integer.toString(tuitionDue()).length() == 5) {
+				char tuition[] = new char[6];
+				for(int i = 0; i <6; i++) {
+					if(i == 2) {
+						tuition[i] = ',';
+						skip = true; 
+					}
+					else {
+						if(skip) 
+							tuition[i] = Integer.toString(tuitionDue()).charAt(i-1);
+						else
+							tuition[i] = Integer.toString(tuitionDue()).charAt(i);
+					}
+				}
+				for(int i = 0; i < 6; i++) {
+					  tuitionAmt = tuitionAmt + tuition[i];
+				}
+			}	
+		 return super.toString() + "\n" +"-Exchange Student: "+ exchange + "\n" +"-Total Tuition Due: $"+ tuitionAmt;  
 	 }    
 	 
 	 /**
@@ -68,30 +105,25 @@ public class International extends Student {
 	  * The corresponding expected input/output can be found in the test doc 
 	  */
 	 public static void main(String[] args) {
-		International student1 = new International("David", "Lee", 12, false);
-		System.out.println("Student 1 Entry: " + student1.toString()); 
-		System.out.println("Total Tuition Due: $" + student1.tuitionDue());
+			
+			International student1 = new International("David", "Lee", 12, false);
+			System.out.println("Student 1 Entry: " + student1.toString()); 
 						
-		International student = new International("Joe", "Kim", 12, true);
-		System.out.println("Student 2 Entry: " + student.toString()); 
-		System.out.println("Total Tuition Due: $" + student.tuitionDue());
+			International student = new International("Joe", "Kim", 12, true);
+			System.out.println("Student 2 Entry: " + student.toString()); 
 			
-		International student2 = new International("April", "Young", 17, false);
-		System.out.println("Student 3 Entry: " + student2.toString()); 
-		System.out.println("Total Tuition Due: $" + student2.tuitionDue());
+			International student2 = new International("April", "Young", 17, false);
+			System.out.println("Student 3 Entry: " + student2.toString()); 
+
+			International student3 = new International("Mary", "Yang", 17, true);
+			System.out.println("Student 4 Entry: " + student3.toString()); 
+
+			International student4 = new International("Clifford", "Dog", 9, false);
+			System.out.println("Student 5 Entry: " + student4.toString()); 
 			
-		International student3 = new International("Mary", "Yang", 17, true);
-		System.out.println("Student 4 Entry: " + student3.toString()); 
-		System.out.println("Total Tuition Due: $" + student3.tuitionDue());
-			
-		International student4 = new International("Clifford", "Dog", 9, false);
-		System.out.println("Student 5 Entry: " + student4.toString()); 
-		System.out.println("Total Tuition Due: $" + student4.tuitionDue());
-			
-		International student5 = new International("Jimmy", "Neutron", 9, true);
-		System.out.println("Student 6 Entry: " + student5.toString()); 
-		System.out.println("Total Tuition Due: $" + student5.tuitionDue());
+			International student5 = new International("Jimmy", "Neutron", 9, true);
+			System.out.println("Student 6 Entry: " + student5.toString()); 
 
 		}
-	
+	 
 }
