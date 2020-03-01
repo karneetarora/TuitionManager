@@ -1,3 +1,11 @@
+ /**
+ * StudentList Class is the container class that holds students in an expandable array and manages
+ *  removals of students.
+ * Methods include - add(Student s), remove(Student s), print(), isEmpty(), contains(Student s), find(Student s),
+ * and grow().
+ * @author Karneet Arora, Manel Bermad
+ *
+ */
 public class StudentList {
 	
 	private final int NOT_FOUND = -1;
@@ -14,12 +22,13 @@ public class StudentList {
 		numStudents = 0;
 	}
 	
-	
 
-	/**
-	 * This method adds a student to the Student List
-	 * @param student being added to the list
-	 */
+
+/**
+ * This method adds a student to the Student List
+ * @param s : student being added to the list
+ */
+	
 	public void add(Student s) {
 
 		if (studentList.length == numStudents) {
@@ -33,9 +42,11 @@ public class StudentList {
 	}
 
 	
+
 	/**
-	 * This method removes a student from the Student List
-	 * @param student being removed from the list
+	 * 
+	 * @param s : student to be removed from student list
+	 * @return true when student is removed
 	 */
 	public boolean remove(Student s) {
 		
@@ -78,13 +89,12 @@ public class StudentList {
 
 
 	/**
-	 * checks if member exists in team
-	 * 
-	 * @param team Member consisting of a name and a date
+	 * checks if student exists in student list 
+	 * @param s  consisting of a name and a date
 	 * @return whether or not m is a member of team
 	 */
-	public boolean contains(Student m) {
-		if (find(m) == NOT_FOUND) {
+	public boolean contains(Student s) {
+		if (find(s) == NOT_FOUND) {
 			return false;
 		}
 		return true;
@@ -92,14 +102,14 @@ public class StudentList {
 	
 
 	/**
-	 * find(Student m) is a helper method that locates the index of Student in studentList 
-	 * @param m : a student
+	 * find(Student s) is a helper method that locates the index of Student in studentList 
+	 * @param s : a student
 	 * @return index of student if found, else: -1
 	 */
 
-	private int find(Student m) {
+	private int find(Student s) {
 		for (int i = 0; i < numStudents; i++) {
-			if (studentList[i].compareTo(m) == 0) { // compares only fname and lname
+			if (studentList[i].compareTo(s) == 0) { // compares only fname and lname
 				return i;
 			}
 		}
@@ -116,7 +126,7 @@ public class StudentList {
 		Student[] newArray = new Student[studentList.length + 4];
 		int index = 0;
 		for (Student s : studentList) {
-			newArray[index] = studentList[index]; // probably wrong? do I need to do "new"?
+			newArray[index] = studentList[index]; 
 			index++;
 		}
 		studentList = newArray;
