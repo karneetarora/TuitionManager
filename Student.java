@@ -1,3 +1,9 @@
+ /**
+ * Student class implements the Comparable Interface.
+ * Methods include - compareTo(Object obj),toString() , and the abstract method: tuitionDue()
+ * 
+ * @author Karneet Arora, Manel Bermad
+ */
 public abstract class Student implements Comparable {
 	 private String fname;    
 	 private String lname;    
@@ -10,24 +16,41 @@ public abstract class Student implements Comparable {
 		 this.credit = credit; 
 	 }       
 	
-	 //must implement compareTo method because Student class implements the Comparable Interface    
-	 //return 0 if fname and lname are equal, -1 if this < obj, 1 if this > obj    
+/**
+ * @param obj : object to compare to this.
+ * @return return 0 if fname and lname are equal, -1 if this < obj, 1 if this > obj. 
+ */
+
 	 public int compareTo(Object obj) {
 		 if(obj instanceof Student) {
-			 Student temp = (Student) obj; 
-			 if (temp.fname == this.lname)
-					 return 0; 	
-		 }
-		 return -1; 
+			 Student temp = (Student) obj;
+			 int fnameComparaison  = temp.fname.compareTo(this.fname);
+			 int lnameComparaison  = temp.lname.compareTo(this.lname);
+
+			 if (fnameComparaison == 0 && lnameComparaison == 0) {
+				 return 0;
+				 }
+			 else if(fnameComparaison > 0 ){
+				 return 1;
+			 }
+			 }
+		return -1;
+			 
+			// if (temp.fname.equals(this.fname) && temp.lname.equals( this.lname))
+			//		 return 0;  }
+		// return -1; 
 	 }
 	
-	 //return a string with fname, lname and credit hours; subclasses will be using this method.    
+	 /**
+	  * toString print the first name, last name, and credit hour of the specified object.
+	  * @return information about the object.
+	  */
 	 public String toString() {
-		 return fname + " " + lname + " " + credit; 
+		 return this.fname + " " + this.lname + " " + this.credit; 
 	 }     
 	   
 	 /**
-	  * An abstract method to compute the total tuition amount
+	  * tuitionDue() is an abstract method that computes the total tuition amount
 	  * The subclasses perform the calculations       
 	  */
 	 public abstract int tuitionDue();
