@@ -9,10 +9,10 @@ import java.util.Scanner;
 public class TuitionManager {
 	
 
-    static String command, fname, lname;
-    static Object data;// type-specific data>
-    static int credit;
-    static StudentList list;
+    private static String command, fname, lname;
+    private static Object data;// type-specific data>
+    private static int credit;
+    private static StudentList list;
 
 	public static void main(String[] args) {
 
